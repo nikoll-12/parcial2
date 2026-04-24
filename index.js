@@ -77,4 +77,35 @@ function bresenhamLine(x0, y0, x1, y1) { // Uso único de enteros lo que hace qu
     }
   }
 }
+/**
+ * Algoritmo de circunferencia (Punto Medio)
+ * Optimizado usando simetría en 8 octantes
+ */
+/**
+ * Dibuja una circunferencia usando el algoritmo de punto medio
+ * @param {number} cx - coordenada X del centro
+ * @param {number} cy - coordenada Y del centro
+ * @param {number} r - radio de la circunferencia
+ */
+function midpointCircle(cx, cy, r) {
 
+  let x = 0; //Coordenada incial en x// 
+  let y = r; //Coordenada incial en y// 
+  let d = 3 - 2 * r; //Parámetro de decisión incial para optimizar midpoint// 
+
+  while (x <= y) {
+//Dibujar los 8 puntos simétricos de la circunferencia// 
+    plotCirclePoints(cx, cy, x, y);
+
+    if (d < 0) { 
+      d = d + 4 * x + 6;
+    } else {
+      d = d + 4 * (x - y) + 10;
+      y--;
+    }
+
+    x++;
+  }
+}
+
+ 
