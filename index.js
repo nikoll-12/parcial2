@@ -153,3 +153,47 @@ function getPolygonVertices(centerX, centerY, sides, radius) {
   return vertices;
 }
  
+/**
+ * Dibuja el polígono conectando vértices
+ */
+function drawPolygon(vertices) {
+
+  for (let i = 0; i < vertices.length; i++) {
+
+    let p1 = vertices[i];
+    let p2 = vertices[(i + 1) % vertices.length];
+
+    bresenhamLine(p1.x, p1.y, p2.x, p2.y);
+  }
+}
+
+/**
+ * Dibuja circunferencias en cada vértice (radio R/4)
+ */
+function drawCirclesOnVertices(vertices, radius) {
+
+  for (let v of vertices) {
+    midpointCircle(v.x, v.y, radius);
+  }
+}
+/**
+ * Genera toda la figura automáticamente
+ */
+function generateFigure() {
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Número de lados entre 5 y 10
+  let n = Math.floor(Math.random() * 6) + 5;
+
+  let R = 180;
+
+  let centerX = W / 2;
+  let centerY = H / 2;
+
+  let vertices = getPolygonVertices(centerX, centerY, n, R);
+
+  drawPolygon(vertices);
+
+  drawCirclesOnVertices(vertices, Math.floor(R / 4));
+}
