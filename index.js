@@ -197,3 +197,9 @@ function generateFigure() {
 
   drawCirclesOnVertices(vertices, Math.floor(R / 4));
 }
+/**
+ * Ejecutar automáticamente al cargar
+ */
+window.onload = function () {
+  generateFigure();
+};
