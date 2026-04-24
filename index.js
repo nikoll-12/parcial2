@@ -107,5 +107,49 @@ function midpointCircle(cx, cy, r) {
     x++;
   }
 }
+/**
+ * Dibuja los 8 puntos simétricos de la circunferencia
+ */
+function plotCirclePoints(cx, cy, x, y) {
 
+  drawPixel(ctx, cx + x, cy + y);
+  drawPixel(ctx, cx - x, cy + y);
+  drawPixel(ctx, cx + x, cy - y);
+  drawPixel(ctx, cx - x, cy - y);
+
+  drawPixel(ctx, cx + y, cy + x);
+  drawPixel(ctx, cx - y, cy + x);
+  drawPixel(ctx, cx + y, cy - x);
+  drawPixel(ctx, cx - y, cy - x);
+}
+/**
+ * Calcula los vértices de un polígono regular
+ */
+/**
+ * Calcula los vértices de un polígono regular
+ * @param {number} centerX - coordenada X del centro
+ * @param {number} centerY - coordenada Y del centro
+ * @param {number} sides - número de lados del polígono
+ * @param {number} radius - distancia del centro a los vértices
+ * @returns {Array} lista de vértices {x, y}
+ */
+function getPolygonVertices(centerX, centerY, sides, radius) {
+
+  let vertices = [];
+
+  for (let i = 0; i < sides; i++) {
+
+    let angle = (2 * Math.PI * i) / sides;
+
+    let x = centerX + radius * Math.cos(angle);
+    let y = centerY + radius * Math.sin(angle);
+
+    vertices.push({
+      x: Math.round(x),
+      y: Math.round(y)
+    });
+  }
+
+  return vertices;
+}
  
