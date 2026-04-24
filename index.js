@@ -1,7 +1,7 @@
 /**
  * Parcial - Gráficos por Computador poligono regular de n lados
  * Univerasidad militar nueva granada 
- * Estudiante: Nikoll Alejandra Borja Mayorca 
+ * Estudiante: Nikoll Alejandra Borja Mayorca-6014390
  * Tarea: Implementar algoritmos de rasterización manual
  *
  */
@@ -27,7 +27,7 @@ const H = canvas.height;
  * @param {number} y - posición vertical del píxel
  * @param {string} color - color del píxel (por defecto negro)
  */
-function drawPixel(ctx, x, y, color = "#000") {
+function drawPixel(ctx, x, y, color = "#ce4283") {
   ctx.fillStyle = color;
   ctx.fillRect(Math.floor(x), Math.floor(y), 1, 1);
 }
@@ -156,12 +156,19 @@ function getPolygonVertices(centerX, centerY, sides, radius) {
 /**
  * Dibuja el polígono conectando vértices
  */
+/**
+ * Dibuja un polígono conectando sus vértices mediante líneas
+ * @param {Array} vertices - arreglo de objetos que representan los vértices del polígono
+ * @param {number} vertices[].x - coordenada X de cada vértice
+ * @param {number} vertices[].y - coordenada Y de cada vértice
+ */
 function drawPolygon(vertices) {
 
-  for (let i = 0; i < vertices.length; i++) {
+  for (let i = 0; i < vertices.length; i++) { //Vertice actual// 
 
     let p1 = vertices[i];
-    let p2 = vertices[(i + 1) % vertices.length];
+    let p2 = vertices[(i + 1) % vertices.length]; //Vertice final y se usa módulo para volver al inicio//
+    //Dibujar la linea con bresenham//  
 
     bresenhamLine(p1.x, p1.y, p2.x, p2.y);
   }
@@ -180,7 +187,7 @@ function drawCirclesOnVertices(vertices, radius) {
  * Genera toda la figura automáticamente
  */
 function generateFigure() {
-
+//Obtener canvas// 
   ctx.clearRect(0, 0, W, H);
 
   // Número de lados entre 5 y 10
